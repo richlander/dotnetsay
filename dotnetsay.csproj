@@ -1,11 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Description>A simple .NET tool called "dotnetsay" - modernized with Native AOT support.</Description>
+    <Description>A simple .NET tool called "dotnetsay".</Description>
     <OutputType>Exe</OutputType>
+    <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <RollForward>LatestMajor</RollForward>
     <VersionPrefix>3.0.0</VersionPrefix>
     <PackageProjectUrl>https://github.com/dotnet/core/blob/main/samples/dotnetsay/README.md</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -14,7 +16,6 @@
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>dotnetsay</ToolCommandName>
     <PackageId>dotnetsay</PackageId>
-    <RollForward>LatestMajor</RollForward>
     
     <!-- Sourcelink support -->
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
@@ -23,27 +24,8 @@
     <CopyOutputSymbolsToPublishDirectory>false</CopyOutputSymbolsToPublishDirectory>
   </PropertyGroup>
 
-  <!-- For Native AOT builds: target .NET 10 only -->
-  <PropertyGroup Condition="'$(RuntimeIdentifier)' != 'any' and '$(RuntimeIdentifier)' != ''">
-    <TargetFramework>net10.0</TargetFramework>
-    <PublishAot>true</PublishAot>
-    <PublishTrimmed>true</PublishTrimmed>
-    <StripSymbols>true</StripSymbols>
-    <IlcOptimizationPreference>Speed</IlcOptimizationPreference>
-  </PropertyGroup>
-
-  <!-- For fallback 'any' package: multi-target .NET 8, 9, 10 for broader compatibility -->
-  <PropertyGroup Condition="'$(RuntimeIdentifier)' == 'any' or '$(RuntimeIdentifier)' == ''">
-    <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
-  </PropertyGroup>
-
-  <!-- Platform-specific packages with Native AOT -->
-  <PropertyGroup>
-    <RuntimeIdentifiers>linux-x64;linux-arm64;osx-x64;osx-arm64;win-x64;win-arm64;any</RuntimeIdentifiers>
-  </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="9.0.0" PrivateAssets="All"/>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.0" PrivateAssets="All"/>
   </ItemGroup>
 
 </Project>
