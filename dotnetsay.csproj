@@ -3,7 +3,6 @@
   <PropertyGroup>
     <Description>A simple .NET tool called "dotnetsay" - modernized with Native AOT support.</Description>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net10.0</TargetFramework>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -15,19 +14,32 @@
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>dotnetsay</ToolCommandName>
     <PackageId>dotnetsay</PackageId>
-    
-    <!-- Platform-specific packages with Native AOT -->
-    <RuntimeIdentifiers>linux-x64;linux-arm64;osx-x64;osx-arm64;win-x64;win-arm64;any</RuntimeIdentifiers>
-    <PublishAot>true</PublishAot>
-    <PublishTrimmed>true</PublishTrimmed>
-    <StripSymbols>true</StripSymbols>
-    <IlcOptimizationPreference>Speed</IlcOptimizationPreference>
+    <RollForward>LatestMajor</RollForward>
     
     <!-- Sourcelink support -->
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <DebugType>embedded</DebugType>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <CopyOutputSymbolsToPublishDirectory>false</CopyOutputSymbolsToPublishDirectory>
+  </PropertyGroup>
+
+  <!-- For Native AOT builds: target .NET 10 only -->
+  <PropertyGroup Condition="'$(RuntimeIdentifier)' != 'any' and '$(RuntimeIdentifier)' != ''">
+    <TargetFramework>net10.0</TargetFramework>
+    <PublishAot>true</PublishAot>
+    <PublishTrimmed>true</PublishTrimmed>
+    <StripSymbols>true</StripSymbols>
+    <IlcOptimizationPreference>Speed</IlcOptimizationPreference>
+  </PropertyGroup>
+
+  <!-- For fallback 'any' package: multi-target .NET 8, 9, 10 for broader compatibility -->
+  <PropertyGroup Condition="'$(RuntimeIdentifier)' == 'any' or '$(RuntimeIdentifier)' == ''">
+    <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
+  </PropertyGroup>
+
+  <!-- Platform-specific packages with Native AOT -->
+  <PropertyGroup>
+    <RuntimeIdentifiers>linux-x64;linux-arm64;osx-x64;osx-arm64;win-x64;win-arm64;any</RuntimeIdentifiers>
   </PropertyGroup>
 
   <ItemGroup>

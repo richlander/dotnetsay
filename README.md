@@ -11,7 +11,8 @@ A modernized version of the classic dotnetsay .NET tool, now with Native AOT sup
 
 ## Requirements
 
-- .NET 10 SDK or later to install and use the tool
+- **.NET 10 SDK**: Get the best experience with Native AOT for instant startup
+- **.NET 8 or 9 SDK**: Still works! Uses the framework-dependent fallback package
 
 ## Installation
 
@@ -62,22 +63,26 @@ dotnet tool uninstall -g dotnetsay
 dotnet pack -c Release -o ./nupkg
 ```
 
-### Platform-specific Native AOT packages
-
-You need to build on each platform you want to target:
+### Native AOT - Current platform only
 
 ```bash
-# On Windows x64
-dotnet pack -c Release -o ./nupkg --runtime-id win-x64
-
-# On Linux x64
-dotnet pack -c Release -o ./nupkg --runtime-id linux-x64
-
-# On macOS ARM64
-dotnet pack -c Release -o ./nupkg --runtime-id osx-arm64
-
-# etc.
+# Automatically detects your platform (macOS, Linux, Windows)
+./build.sh         # macOS/Linux
+build.cmd          # Windows
 ```
+
+### Native AOT - All platforms
+
+```bash
+# Builds for current platform + Linux via Docker
+./build-all.sh     # macOS/Linux
+
+# Or build Linux packages separately via Docker
+./build-linux.sh   # macOS/Linux  
+build-linux.cmd    # Windows
+```
+
+The Docker-based builds use official Microsoft .NET SDK AOT container images to cross-compile Linux Native AOT binaries from any platform.
 
 ### Install locally
 
@@ -87,11 +92,13 @@ dotnet tool install --add-source ./nupkg -g dotnetsay
 
 ## Architecture
 
-This modernized version uses .NET 10's platform-specific tool packaging:
+This modernized version uses .NET 10's platform-specific tool packaging with backward compatibility:
 
-- **Native AOT packages** for `linux-x64`, `linux-arm64`, `osx-x64`, `osx-arm64`, `win-x64`, and `win-arm64`
-- **`any` runtime fallback** package for platforms without Native AOT support
+- **Native AOT packages** for `linux-x64`, `linux-arm64`, `osx-x64`, `osx-arm64`, `win-x64`, and `win-arm64` (requires .NET 10 SDK)
+- **`any` runtime fallback** package targeting .NET 8, 9, and 10 for maximum compatibility
 - **Version 2** of the `DotNetCliTool` manifest for multi-RID support
+
+When you install with .NET 10 SDK, you get the blazing-fast Native AOT version. With .NET 8/9 SDK, you automatically get the framework-dependent version that works everywhere.
 
 ## Package Sizes
 
