@@ -18,7 +18,7 @@ echo ""
 
 # 2. Build the 'any' runtime fallback package
 echo "📦 Building 'any' runtime fallback package (multi-target: net8.0, net9.0, net10.0)..."
-dotnet pack -c Release -o ./nupkg --runtime-id any /p:ContinuousIntegrationBuild=true /p:PublishAot=false
+dotnet pack -c Release -o ./nupkg -r any /p:ContinuousIntegrationBuild=true /p:PublishAot=false
 echo ""
 
 # 3. Build Linux Native AOT packages using Docker
@@ -29,12 +29,12 @@ echo ""
 if command -v docker &> /dev/null; then
     echo "🚀 Building Native AOT package for linux-x64..."
     docker run --rm -v "$(pwd):/src" -w /src mcr.microsoft.com/dotnet/nightly/sdk:10.0-noble-aot \
-        dotnet pack -c Release -o /src/nupkg --runtime-id linux-x64 /p:ContinuousIntegrationBuild=true
+        dotnet pack -c Release -o /src/nupkg -r linux-x64 /p:ContinuousIntegrationBuild=true
     echo ""
     
     echo "🚀 Building Native AOT package for linux-arm64..."
     docker run --rm -v "$(pwd):/src" -w /src mcr.microsoft.com/dotnet/nightly/sdk:10.0-noble-arm64v8-aot \
-        dotnet pack -c Release -o /src/nupkg --runtime-id linux-arm64 /p:ContinuousIntegrationBuild=true
+        dotnet pack -c Release -o /src/nupkg -r linux-arm64 /p:ContinuousIntegrationBuild=true
     echo ""
 else
     echo "⚠️  Docker not found - skipping Linux Native AOT packages"
@@ -50,7 +50,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
         CURRENT_RID="osx-x64"
     fi
     echo "🚀 Building Native AOT package for $CURRENT_RID..."
-    dotnet pack -c Release -o ./nupkg --runtime-id $CURRENT_RID /p:ContinuousIntegrationBuild=true
+    dotnet pack -c Release -o ./nupkg -r $CURRENT_RID /p:ContinuousIntegrationBuild=true
     echo ""
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
     if [[ $(uname -m) == "aarch64" ]]; then
@@ -59,7 +59,7 @@ elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
         CURRENT_RID="linux-x64"
     fi
     echo "🚀 Building Native AOT package for $CURRENT_RID..."
-    dotnet pack -c Release -o ./nupkg --runtime-id $CURRENT_RID /p:ContinuousIntegrationBuild=true
+    dotnet pack -c Release -o ./nupkg -r $CURRENT_RID /p:ContinuousIntegrationBuild=true
     echo ""
 fi
 

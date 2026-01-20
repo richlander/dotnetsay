@@ -36,11 +36,11 @@ dotnet pack -c Release -o ./nupkg /p:ContinuousIntegrationBuild=true
 
 # Build the platform-specific Native AOT package for current platform
 echo "🚀 Building Native AOT package for $CURRENT_RID..."
-dotnet pack -c Release -o ./nupkg --runtime-id $CURRENT_RID /p:ContinuousIntegrationBuild=true
+dotnet pack -c Release -o ./nupkg -r $CURRENT_RID /p:ContinuousIntegrationBuild=true
 
 # Build the 'any' runtime fallback package
 echo "📦 Building 'any' runtime fallback package..."
-dotnet pack -c Release -o ./nupkg --runtime-id any /p:ContinuousIntegrationBuild=true /p:PublishAot=false
+dotnet pack -c Release -o ./nupkg -r any /p:ContinuousIntegrationBuild=true /p:PublishAot=false
 
 echo ""
 echo "✅ Build complete! Packages created:"
