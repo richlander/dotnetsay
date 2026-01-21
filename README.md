@@ -2,7 +2,9 @@
 
 A .NET tool that displays messages with a friendly ASCII bot. It is modeled after [cowsay](https://en.wikipedia.org/wiki/Cowsay), which includes much fancier features.
 
-This tool was created as part of the .NET Core 2.1 project to provide a basic tool to test the (at that time) new `dotnet tool install` capability. It has been updated multiple times with new features and is now a [file-based app](https://learn.microsoft.com/en-us/dotnet/core/sdk/file-based-apps).
+The tool targets .NET 8 and uses [RollForward](https://github.com/dotnet/designs/blob/main/accepted/2019/runtime-binding.md) to enable compatibility with later runtime versions.
+
+`dotnetday` was created as part of the .NET Core 2.1 project to provide a basic tool to test the (at that time) new `dotnet tool install` capability. It has been updated multiple times with new features and is now a [file-based app](https://learn.microsoft.com/en-us/dotnet/core/sdk/file-based-apps).
 
 ## Requirements
 
@@ -34,7 +36,7 @@ dotnetsay
 With a custom message:
 
 ```bash
-dotnetsay "Hello from Native AOT!"
+dotnetsay "Hello World!"
 ```
 
 From piped input:
@@ -52,23 +54,15 @@ dotnet tool uninstall -g dotnetsay
 ## Building from Source
 
 ```bash
-dotnet pack -c Release -o ./nupkg /p:ContinuousIntegrationBuild=true
+dotnet pack
 ```
 
 ### Install locally
 
 ```bash
-dotnet tool install --add-source ./nupkg -g dotnetsay
+dotnet tool install -g --add-source artifacts/dotnetsay dotnetsay
 ```
-
-## Architecture
-
-This is a traditional framework-dependent .NET tool that:
-- Multi-targets .NET 8, 9, and 10 for maximum compatibility
-- Works on any platform (Windows, macOS, Linux)
-- Requires the .NET runtime to be installed on the target machine
-- Uses `RollForward=LatestMajor` to work with newer runtime versions
 
 ## License
 
-MIT License - Copyright .NET Foundation
+MIT License - Copyright Richard Lander
