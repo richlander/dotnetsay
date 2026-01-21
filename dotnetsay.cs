@@ -12,7 +12,7 @@
 #:property ToolCommandName=dotnetsay
 #:property VersionPrefix=3.0.0
 
-string message = "Welcome to dotnetsay, a .NET tool!";
+string message = "Welcome to dotnetsay, a very basic .NET tool!";
 
 if (Console.IsInputRedirected)
 {
