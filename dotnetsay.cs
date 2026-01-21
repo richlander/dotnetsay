@@ -10,7 +10,7 @@
 #:property SourceLink=true
 #:property TargetFramework=net8.0
 #:property ToolCommandName=dotnetsay
-#:property VersionPrefix=3.0.0
+#:property VersionPrefix=3.0.1
 
 string message = "Welcome to dotnetsay, a very basic .NET tool!";
 
