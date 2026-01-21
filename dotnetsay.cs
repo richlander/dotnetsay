@@ -3,12 +3,13 @@
 #:property ToolCommandName=dotnetsay
 #:property PackageId=dotnetsay
 #:property Description=A simple .NET tool
-#:property Authors=.NET Team
-#:property Copyright=.NET Foundation
+#:property Authors=Rich Lander
 #:property PackageLicenseExpression=MIT
-#:property PackageProjectUrl=https://github.com/dotnet/core/blob/main/samples/dotnetsay/README.md
+#:property PackageProjectUrl=https://github.com/richlander/dotnetsay/blob/main/README.md
 #:property VersionPrefix=3.0.0
 #:property RollForward=LatestMajor
+#:property PackAsTool=true
+#:property SourceLink=true
 
 string message = "Welcome to dotnetsay, a .NET tool!";
 

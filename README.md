@@ -1,6 +1,8 @@
 # dotnetsay .NET Tool
 
-A classic .NET tool that displays messages with a friendly ASCII bot.
+A .NET tool that displays messages with a friendly ASCII bot. It is modeled after [cowsay](https://en.wikipedia.org/wiki/Cowsay), which includes much fancier features.
+
+This tool was created as part of the .NET Core 2.1 project to provide a basic tool to test the (at that time) new `dotnet tool install` capability. It has been updated multiple times with new features and is now a [file-based app](https://learn.microsoft.com/en-us/dotnet/core/sdk/file-based-apps).
 
 ## Requirements
 
