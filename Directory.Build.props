@@ -1,8 +1,12 @@
 <Project>
-  <ItemGroup>
-    <None Include="README.md" Pack="true" PackagePath="\"/>
-  </ItemGroup>
   <PropertyGroup>
     <NoWarn>$(NoWarn);NU5119</NoWarn>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(OfficialBuild)' == 'true'">
+    <Deterministic>true</Deterministic>
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\"/>
+  </ItemGroup>
 </Project>

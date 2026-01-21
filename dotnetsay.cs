@@ -1,18 +1,17 @@
 #!/usr/bin/env dotnet
-#:property Authors=Rich Lander
+#:property Authors=Richard Lander
 #:property Description=A simple .NET tool that prints dotnetbot
 #:property PackageId=dotnetsay
 #:property PackageLicenseExpression=MIT
-#:property PackageProjectUrl=https://github.com/richlander/dotnetsay/blob/main/README.md
 #:property PackageReadmeFile=README.md
 #:property PackAsTool=true
+#:property PublishRepositoryUrl=true
 #:property RollForward=LatestMajor
-#:property SourceLink=true
 #:property TargetFramework=net8.0
 #:property ToolCommandName=dotnetsay
-#:property VersionPrefix=3.0.1
+#:property VersionPrefix=3.0.2
 
-string message = "Welcome to dotnetsay, a very basic .NET tool!";
+string message = "Welcome to dotnetsay, a basic .NET tool!";
 
 if (Console.IsInputRedirected)
 {
