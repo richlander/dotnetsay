@@ -9,7 +9,7 @@
 #:property RollForward=LatestMajor
 #:property TargetFramework=net8.0
 #:property ToolCommandName=dotnetsay
-#:property VersionPrefix=3.0.2
+#:property VersionPrefix=3.0.3
 
 string message = "Welcome to dotnetsay, a basic .NET tool!";
 
