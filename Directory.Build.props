@@ -1,13 +1,7 @@
 <Project>
+
   <PropertyGroup>
-    <NoWarn>$(NoWarn);NU5119</NoWarn>
+    <UseArtifactsOutput>true</UseArtifactsOutput>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(OfficialBuild)' == 'true'">
-    <Deterministic>true</Deterministic>
-    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
-    <EmbedUntrackedSources>true</EmbedUntrackedSources>
-  </PropertyGroup>
-  <ItemGroup>
-    <None Include="README.md" Pack="true" PackagePath="\"/>
-  </ItemGroup>
+
 </Project>
